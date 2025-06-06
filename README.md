@@ -75,26 +75,21 @@ For bivariate analysis, I examined the relationship between cooking time and ave
 ></iframe>
 
 ### Interesting Aggregates
-I created a pivot table to see the relationship between the number of steps, the number of ingredients, and the time taken.
+I created a pivot table to see the relationship between the number of steps, the number of ingredients, and the time taken. The left represents different groups of n_steps while the top represents different groups of n_ingredients. The values within the table are the median cooking times for each of these groups. 
 
-| steps_band ingredients_band  |   ≤ 5 |   6–10 |   11–15 |   16–20 |   > 20 |
-|:-------------|------:|-------:|--------:|--------:|-------:|
-| ≤ 5          |    10 |     20 |      33 |      50 |     90 |
-| 6–10         |    25 |     35 |      40 |      50 |     60 |
-| 11–15        |    35 |     40 |      45 |      55 |     70 |
-| 16–20        |    40 |     50 |      55 |      60 |     75 |
-| > 20         |    55 |     60 |      65 |      80 |     95 |
+There is a clear pattern where the more steps and ingredients a recipe has, the longer it takes. This is because as we move down and right along the table, the values become larger. 
 
-| ingredients_band | | | | | |
-| steps_band  |   ≤ 5 |   6–10 |   11–15 |   16–20 |   > 20 |
-|:-------------|------:|-------:|--------:|--------:|-------:|
-| ≤ 5          |    10 |     20 |      33 |      50 |     90 |
-| 6–10         |    25 |     35 |      40 |      50 |     60 |
-| 11–15        |    35 |     40 |      45 |      55 |     70 |
-| 16–20        |    40 |     50 |      55 |      60 |     75 |
-| > 20         |    55 |     60 |      65 |      80 |     95 |
+|ingredients_band≤5|6–10|11–15|16–20|>20|
+|steps_band||||||
+|:-------------|----:|----:|----:|----:|----:|
+|≤5|10|20|33|50|90|
+|6–10|25|35|40|50|60|
+|11–15|35|40|45|55|70|
+|16–20|40|50|55|60|75|
+|>20|55|60|65|80|95|
 
-First, I seperated n_steps and n_ingredients into groups 
+
+
 
 
 ## Assessment of Missingness
