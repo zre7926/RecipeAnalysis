@@ -9,6 +9,21 @@ In this project, we will be using two datasets - one containing recipes and one 
 
 The first dataset (`recipe`) has 83782 rows (thus there are that many recipes) and 12 columns, which are
 
+|Column|Description|
+|------|-----------|
+|name|Recipe name|
+|id|Recipe ID|
+|minutes|Minutes to prepare recipe|
+|contributor_id|User ID who submitted this recipe|
+|submitted|Date recipe was submitted|
+|tags|Food.com tags for recipe|
+|nutrition|Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV = “percentage of daily value”|
+|n_steps|Number of steps in recipe|
+|steps|Text for recipe steps, in order|
+|description|User-provided description|
+|ingredients|Text for recipe ingredients|
+|n_ingredients|Number of ingredients in recipe|
+
 a dataset containing over 10,000 recipes sourced from a popular cooking platform, enriched with user interactions like star ratings and reviews. Our central question is: Do people rate recipes that take longer to prepare lower, and can we predict how long a recipe takes based on its features? This matters because it touches both user psychology and platform design. If longer prep times are linked with lower ratings, then recipe creators might want to simplify their instructions, or at least set user expectations more clearly. Conversely, if well-rated recipes tend to have certain features—like fewer steps, fewer ingredients, or shorter descriptions—those insights could help generate smarter, more efficient content for culinary platforms.
 
 ## Data Cleaning and Exploratory Data Analysis
