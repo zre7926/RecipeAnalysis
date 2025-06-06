@@ -55,6 +55,7 @@ The first few rows look like this (I didn't include some of the columns since th
 | 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |  29782           |        5 |      194.8 |            5 |
 | 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |      1.19628e+06 |        5 |      194.8 |            5 |
 | 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 | 768828           |        5 |      194.8 |            5 |
+
 ### Univariate Analysis
 
 
