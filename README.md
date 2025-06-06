@@ -182,6 +182,7 @@ For the model, I continued to use a RandomForestClassifier with the five feature
 I performed GridSearchCV (5-fold CV) on the training split, optimizing F1 score. I decided to search over:
 - n_estimators ∈ {50, 100, 150, 200, 250} – a larger forest usually lowers variance, and after adding features I anticipated that more trees would improve stability.
 - max_depth ∈ {None, 10, 30, 60} – shallow trees help avoid overfitting on numeric counts, while deeper trees can capture subtler interactions.
+
 All hyperparameter combinations were tested on the same train set used by the baseline, so comparisons remain fair. The best parameter came out to be no max depth and 150 estimators. 
 
 The F1 score of this model was 0.89. Specifically, the F1 score for the groups are 0.88, 0.87, and 0.92 for the short, medium, and long groups respectively. There is a clear improvement from the baseline model, especially for the short and medium groups. The model is still better at predicting long times. I can confidently attribute the performance gain to feature engineering, not to lucky data partitions since I used the same divide. 
