@@ -159,12 +159,28 @@ The evaluation metric I will be using is the F1-score. I chose the F1-score over
 All the features in our model — `n_steps`, `n_ingredients`, `calories`, `uses_oven` or `desc_length` — come directly from the recipe’s content as soon as it’s published, so they would be available at the time of prediction. In contrast, something like `avg_rating` doesn’t exist until users start cooking and rating, so it’s excluded. By restricting ourselves to only those recipe‐text fields, we ensure the model never “peeks” at future information and truly predicts prep‐time based solely on what’s known up front.
 
 ## Baseline Model
-My baseline model is a RandomForest Classifier using the feature `n_steps` (the number of steps in the recipe) and `n_ingredients` (the number of ingredients needed). Both are quantitative variables so there was no need for any encodings or transformations. 
+My baseline model is a RandomForest Classifier using the feature `n_steps` (the number of steps in the recipe) and `n_ingredients` (the number of ingredients needed). I chose these two features because recipes with more steps and more ingredients tend to lead to longer cooking time from my experience. Intuitively, it seems that these two features will work. Both are quantitative variables so there was no need for any encodings or transformations. 
 
 I split the data into train/test groups with a 80/20 split and fitted RandomForestClassifier() with default settings. 
 
-The F1 score of this model was 0.52. Specifically, the F1 score for the groups are 0.45, 0.46, and 0.64 for the short, medium, and long groups respectively. Thus, it seems that our model is good at capturing recipes that take >50 mins while it is not as good for recipes that take less. 
+The F1 score of this model was 0.52. Specifically, the F1 score for the groups are 0.45, 0.46, and 0.64 for the short, medium, and long groups respectively. Thus, it seems that our model is good at capturing recipes that take >50 mins while it is not as good for recipes that take less. The F1 score is well above random-guessing but still leaves a lot of room for improvement. Thus, I will attempt to build a stronger classifier that incorporates richer features. 
 
 ## Final Model
+To boost performance over the two-feature baseline, I added three new features that capture additional notions of complexity and cooking style:
+
+- calories (quantitative). Higher‐calorie dishes often require richer ingredients, longer prepping, or additional steps. Even if two recipes have the same step‐count and ingredient‐count, a 50 calorie salad behaves very differently from a 1000 calorie casserole.
+
+- uses_oven (binary; nominal). Baking or roasting steps (whenever the raw instructions mention “oven”) introduces a lot of time, especially when you have to preheat the oven (a common step). 
+
+- desc_length (quantitative). Recipes with longer author descriptions tend to be more involved: they often include back‐story, detailed tips, or multi‐part cooking instructions that don’t always appear in the numbered steps.
+
+These three, in addition to the baseline n_steps and n_ingredients, give a richer picture. Since all of my features are either quantitative or binary already, I didn't do any encodings or transformations. 
+
+For the model, I continued to use a RandomForestClassifier with the five features mentioned. I split the data into train/test groups with a 80/20 split (I made sure that the split is the same as the baseline model so that I can compare the metrics more effectively). 
+
+I performed GridSearchCV (5-fold CV) on the training split, optimizing F1 score. I decided to search over:
+- n_estimators ∈ {200, 400, 600} – a larger forest usually lowers variance, and after adding features I anticipated that more trees would improve stability.
+- max_depth ∈ {None, 10, 20, 30} – shallow trees help avoid overfitting on numeric counts, while deeper trees can capture subtler interactions.
+All hyperparameter combinations were tested on the same train set used by the baseline, so comparisons remain fair. The best parameter came out to be 
 
 ## Fairness Analysis
