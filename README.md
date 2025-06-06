@@ -57,21 +57,21 @@ The first few rows look like this (I didn't include some of the columns since th
 | 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 | 768828           |        5 |      194.8 |            5 |
 
 ### Univariate Analysis
-For an univariate analysis, I examined the distribution of cooking time within the dataset. It seems that the distribution is skewed to the right with the center being around 30-40 minutes. 
+For univariate analysis, I examined the distribution of cooking time within the dataset. It seems that the distribution is skewed to the right with the center being around 30-40 minutes. 
 <iframe
   src="assets/univariateplot.html"
   width="800"
-  height="400"
+  height="450"
   frameborder="0"
 ></iframe>
-Interesting, there are many outliers. In fact, one recipe takes 1 million minutes to cook and it's title is 'how to preserve a husband'.
+I noticed that there are a few outliers. In fact, one recipe takes 1 million minutes to cook and it's title is 'how to preserve a husband'.
 
 ### Bivariate Analysis
-
+For bivariate analysis, I examined the relationship between cooking time and average rating by plotting a scatter plot of the two columns. It seems that most data points are around the top left of the plot, which means high rating and less time. 
 <iframe
   src="assets/bivariateplot.html"
   width="1000"
-  height="400"
+  height="450"
   frameborder="0"
 ></iframe>
 
