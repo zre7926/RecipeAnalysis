@@ -6,7 +6,7 @@ Author: Ryan Zhang
 ## Introduction
 Cooking time is one of the most important factors shaping how people choose recipes online. Whether you're a busy student, a working parent, or someone just trying to get dinner on the table, the time a recipe takes can be a dealbreaker. Many users will filter out recipes that take too long before even considering the ingredients or the rating. At the same time, there’s a trade-off: longer recipes may result in more flavorful or satisfying meals, but they can also intimidate or deter users, especially if the payoff isn’t clearly worth the time investment.
 
-In this project, we will be using two datasets - one containing recipes and one containing reviews to those recipes. Both datasets come from food.com. 
+In this project, we will be using two datasets - one containing recipes and one containing reviews to those recipes. Both datasets come from [food.com](food.com). 
 
 The first dataset (`recipe`) has 83782 rows (thus there are that many recipes) and 12 columns, which are
 
@@ -25,7 +25,7 @@ The first dataset (`recipe`) has 83782 rows (thus there are that many recipes) a
 |`ingredients`|Text for ingredients needed|
 |`n_ingredients`|Number of ingredients in recipe|
 
-The second dataset (`ratings`) has 731927 rows (thus there are that many recipes) and 5 columns, which are
+The second dataset (`ratings`) has 731927 rows (thus there are that many reviews) and 5 columns, which are
 
 |Column|Description|
 |------|-----------|
@@ -38,13 +38,14 @@ The second dataset (`ratings`) has 731927 rows (thus there are that many recipes
 ## Data Cleaning and Exploratory Data Analysis
 ### Data Cleaning
 Before doing any analysis, I did some cleaning of the datasets and some data visualization. 
-First, I merged the two datasets. Specifically, I did a left merge of `recipes` with `ratings` to ensure that every recipe is matched with all of its reviews. This step is very important since it leaves us with just one dataframe to work with throughout the project.
 
-Then, I replaced all the zero ratings with `np.nan` since a standard rating should be in the range 1 to 5. Therefore, ratings of 0 should be considered missing to avoid skewing averages. 
+- First, I merged the two datasets. Specifically, I did a left merge of `recipes` with `ratings` to ensure that every recipe is matched with all of its reviews. This step is very important since it leaves us with just one dataframe to work with throughout the project.
 
-The `nutrition` column was originally stored as a stringified list, which I split into usable numeric columns. This enables quantitative nutritional analysis. Without this, we couldn’t use nutritional features in modeling or compare recipes by dietary content.
+- Then, I replaced all the zero ratings with `np.nan` since a standard rating should be in the range 1 to 5. Therefore, ratings of 0 should be considered missing to avoid skewing averages. 
 
-Finally, I computed the average rating of each recipe and created a separate column `avg_rating`. By averaging ratings, it helps us summarize a recipe's reception. 
+- The `nutrition` column was originally stored as a stringified list, which I split into usable numeric columns. This enables quantitative nutritional analysis. Without this, we couldn’t use nutritional features in modeling or compare recipes by dietary content.
+
+- Finally, I computed the average rating of each recipe and created a separate column `avg_rating`. By averaging ratings, it helps us summarize a recipe's reception. 
 
 After these steps of data cleaning, `df` has 234429 rows and 25 columns.
 The first few rows look like this (I didn't include some of the columns since they are less significant and long):
@@ -96,7 +97,7 @@ The `description` column is plausibly Not Missing At Random (NMAR) because the v
 ### Missingness Dependency
 On the other hand, the column `rating` has non-trivial missingness to analyze. Thus, I will be performing permutation tests to determine whether there is dependency of the missingness on other columns. Specifically, I will test the numerical columns `minutes` and `n_steps`. 
 
-First Permutation Test:
+**First Permutation Test:**
 
 Null Hypothesis: The distribution of `minutes` when `rating` is missing is the same as the distribution of `minutes` when `rating` is not missing.
 
@@ -112,7 +113,7 @@ The test statistic used is the difference in means and the significance level is
 ></iframe>
 p-value = 0.117 >= 0.05. Thus, we fail to reject the null hypothesis. The missingness of `rating` does not depend on amount of time to cook the recipe (evidence for MCAR). 
 
-Second Permutation Test:
+**Second Permutation Test:**
 
 Null Hypothesis: The distribution of `n_steps` when `rating` is missing is the same as the distribution of `n_steps` when `rating` is not missing.
 
@@ -132,7 +133,7 @@ In conclusion, my permutation tests indicate that `rating` missingness is Missin
 
 ## Hypothesis Testing
 
-I wondered whether patience pays off in recipe ratings: do dishes that take longer earn different average scores than quick fixes? To answer this, we compared the mean user rating of “long” recipes to that of “short” recipes. A label-shuffling permutation test, using the difference in means as the statistic, lets us make this comparison without relying on normality assumptions.
+I wondered whether patience pays off in recipe ratings: do dishes that take longer earn different average scores than quick fixes? To answer this, we compared the mean user rating of “long” recipes to that of “short” recipes. A permutation test, using the difference in means as the test statistic, lets us make this comparison.
 
 Null Hypothesis: The mean rating for “long” recipes (cooking time > median) equals the mean rating for “short” recipes (cooking time <= median).
 
@@ -161,7 +162,7 @@ All the features in our model — `n_steps`, `n_ingredients`, `calories`, `uses_
 ## Baseline Model
 My baseline model is a RandomForest Classifier using the feature `n_steps` (the number of steps in the recipe) and `n_ingredients` (the number of ingredients needed). I chose these two features because recipes with more steps and more ingredients tend to lead to longer cooking time from my experience. Intuitively, it seems that these two features will work. Both are quantitative variables so there was no need for any encodings or transformations. 
 
-I split the data into train/test groups with a 80/20 split and fitted RandomForestClassifier() with default settings. 
+I split the data into train/test groups with a 80/20 split and fitted RandomForestClassifier with default settings. 
 
 The F1 score of this model was 0.52. Specifically, the F1 score for the groups are 0.45, 0.46, and 0.64 for the short, medium, and long groups respectively. Thus, it seems that our model is good at capturing recipes that take >50 mins while it is not as good for recipes that take less. The F1 score is well above random-guessing but still leaves a lot of room for improvement. Thus, I will attempt to build a stronger classifier that incorporates richer features. 
 
