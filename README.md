@@ -1,5 +1,5 @@
-# RecipeAnalysis
-Data Project for UCSD DSC-80 Course Final Project
+# Recipe Prep Times: Analysis, Testing, and Predicting
+Data Science Project @ UCSD
 
 Author: Ryan Zhang
 
@@ -193,9 +193,9 @@ The evaluation metric will be accuracy.
 
 I will conduct a permutation test to determine whether the model is fair amongst these two groups. 
 
-Null Hypothesis: The accuracy of group X and group Y are the same. 
+Null Hypothesis: Our model is fair. The accuracy of group X and group Y are the same. 
 
-Alternate Hypothesis: The accuracy of group X is larger than the accuracy of group Y (recipes with long descriptions are predicted more accurately)
+Alternate Hypothesis: Our model is unfair. The accuracy of group X is larger than the accuracy of group Y (recipes with long descriptions are predicted more accurately)
 
 The test statistic used is the difference in accuracy (accuracy of X - accuracy of Y) and the significance level is 0.05.
 
