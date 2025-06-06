@@ -68,6 +68,12 @@ Interesting, there are many outliers. In fact, one recipe takes 1 million minute
 
 ### Bivariate Analysis
 
+<iframe
+  src="assets/bivariateplot.html"
+  width="1000"
+  height="400"
+  frameborder="0"
+></iframe>
 
 ### Interesting Aggregates
 
