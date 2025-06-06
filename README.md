@@ -179,8 +179,30 @@ These three, in addition to the baseline n_steps and n_ingredients, give a riche
 For the model, I continued to use a RandomForestClassifier with the five features mentioned. I split the data into train/test groups with a 80/20 split (I made sure that the split is the same as the baseline model so that I can compare the metrics more effectively). 
 
 I performed GridSearchCV (5-fold CV) on the training split, optimizing F1 score. I decided to search over:
-- n_estimators ∈ {200, 400, 600} – a larger forest usually lowers variance, and after adding features I anticipated that more trees would improve stability.
-- max_depth ∈ {None, 10, 20, 30} – shallow trees help avoid overfitting on numeric counts, while deeper trees can capture subtler interactions.
-All hyperparameter combinations were tested on the same train set used by the baseline, so comparisons remain fair. The best parameter came out to be 
+- n_estimators ∈ {50, 100, 150, 200, 250} – a larger forest usually lowers variance, and after adding features I anticipated that more trees would improve stability.
+- max_depth ∈ {None, 10, 30, 60} – shallow trees help avoid overfitting on numeric counts, while deeper trees can capture subtler interactions.
+All hyperparameter combinations were tested on the same train set used by the baseline, so comparisons remain fair. The best parameter came out to be no max depth and 150 estimators. 
+
+The F1 score of this model was 0.89. Specifically, the F1 score for the groups are 0.88, 0.87, and 0.92 for the short, medium, and long groups respectively. There is a clear improvement from the baseline model, especially for the short and medium groups. The model is still better at predicting long times. I can confidently attribute the performance gain to feature engineering, not to lucky data partitions since I used the same divide. 
 
 ## Fairness Analysis
+I will determine whether my model is fair amongst different groups. Specifically, the two groups are
+- Group X (“long” descriptions): recipes with desc_length > median length
+- Group Y (“short” descriptions): recipes with desc_length ≤ median length
+The evaluation metric will be accuracy. 
+
+I will conduct a permutation test to determine whether the model is fair amongst these two groups. 
+
+Null Hypothesis: The accuracy of group X and group Y are the same. 
+
+Alternate Hypothesis: The accuracy of group X is larger than the accuracy of group Y (recipes with long descriptions are predicted more accurately)
+
+The test statistic used is the difference in accuracy (accuracy of X - accuracy of Y) and the significance level is 0.05.
+
+<iframe
+  src="assets/fairness.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
+p-value = 0.001 < 0.05. Thus, we reject the null hypothesis. That is, my model predicts recipes with longer descriptions more accurately. 
