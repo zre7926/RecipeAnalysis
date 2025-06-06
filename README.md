@@ -21,10 +21,20 @@ The first dataset (`recipe`) has 83782 rows (thus there are that many recipes) a
 |n_steps|Number of steps in recipe|
 |steps|Text for recipe steps, in order|
 |description|User-provided description|
-|ingredients|Text for recipe ingredients|
+|ingredients|Text for ingredients needed|
 |n_ingredients|Number of ingredients in recipe|
 
-a dataset containing over 10,000 recipes sourced from a popular cooking platform, enriched with user interactions like star ratings and reviews. Our central question is: Do people rate recipes that take longer to prepare lower, and can we predict how long a recipe takes based on its features? This matters because it touches both user psychology and platform design. If longer prep times are linked with lower ratings, then recipe creators might want to simplify their instructions, or at least set user expectations more clearly. Conversely, if well-rated recipes tend to have certain features—like fewer steps, fewer ingredients, or shorter descriptions—those insights could help generate smarter, more efficient content for culinary platforms.
+The second dataset (`ratings`) has 731927 rows (thus there are that many recipes) and 5 columns, which are
+
+|Column|Description|
+|------|-----------|
+|user_id|User ID|
+|recipe_id|Recipe ID|
+|date|Date of interaction|
+|rating|Rating given|
+|review|Review text|
+
+
 
 ## Data Cleaning and Exploratory Data Analysis
 
