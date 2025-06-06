@@ -94,21 +94,15 @@ There is a clear pattern where the more steps and ingredients a recipe has, the 
 The `description` column is plausibly Not Missing At Random (NMAR) because the very decision to leave it blank often depends on qualities of the unwritten text itself. For example, authors may skip a blurb when the title already conveys the full idea, when the back-story is too personal or culturally sensitive, or when they feel their writing would be sub-par; all of these motives depend on information that is not recorded elsewhere in the dataset. To re-frame the mechanism as MAR, we would need variables that capture those hidden motives. For example, an “author-reason” column collected at submission time (self-explanatory title, privacy concerns, language barrier). Conditioning on such observed factors would let us explain the missingness without referencing the unseen description content, satisfying the MAR assumption.
 
 ### Missingness Dependency
-On the other hand, the column `rating` has non-trivial missingness to analyze. Thus, I will be performing permutation tests to determine whether there is dependency of the missingness on other columns. Specifically, I will test the numerical columns `n_steps`, `n_ingredients`, and `minutes`. 
+On the other hand, the column `rating` has non-trivial missingness to analyze. Thus, I will be performing permutation tests to determine whether there is dependency of the missingness on other columns. Specifically, I will test the numerical columns `minutes` and `n_steps`. 
 
-<iframe
-  src="assets/n_stepsmissing.html"
-  width="1000"
-  height="430"
-  frameborder="0"
-></iframe>
+First Permutation Test:
 
-<iframe
-  src="assets/n_ingredientsmissing.html"
-  width="1000"
-  height="430"
-  frameborder="0"
-></iframe>
+Null Hypothesis: The distribution of `minutes` when `rating` is missing is the same as the distribution of `minutes` when `rating` is not missing.
+
+Alternate Hypothesis: The distribution of `minutes` when `rating` is missing is not the same as the distribution of `minutes` when `rating` is not missing.
+
+The test statistic used is the difference in means and the significance level is 0.05.
 
 <iframe
   src="assets/minutesmissing.html"
@@ -116,6 +110,25 @@ On the other hand, the column `rating` has non-trivial missingness to analyze. T
   height="430"
   frameborder="0"
 ></iframe>
+p-value = 0.117 >= 0.05. Thus, we fail to reject the null hypothesis. The missingness of `rating` does not depend on amount of time to cook the recipe (evidence for MCAR). 
+
+Second Permutation Test:
+
+Null Hypothesis: The distribution of `n_steps` when `rating` is missing is the same as the distribution of `n_steps` when `rating` is not missing.
+
+Alternate Hypothesis: The distribution of `n_steps` when `rating` is missing is not the same as the distribution of `n_steps` when `rating` is not missing.
+
+The test statistic used is the difference in means and the significance level is 0.05.
+
+<iframe
+  src="assets/n_stepsmissing.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
+p-value = 0.000 < 0.05. Thus, we reject the null hypothesis. The missingness of `rating` does depend on the number of steps (evidence for MAR). 
+
+In conclusion, my permutation tests indicate that `rating` missingness is Missing At Random (MAR): it shows clear dependence on `n_steps` (p = 0.000 < 0.05) but no detectable dependence on `minutes` (p = 0.117 > 0.05).
 
 ## Hypothesis Testing
 
