@@ -149,9 +149,21 @@ The test statistic used is the difference in means and the significance level is
 p-value = 0.000 < 0.05. Thus, we reject the null hypothesis. Thus, there is strong evidence that average ratings for longer recipes differ from those for shorter ones, with the observed difference suggesting slightly lower ratings for longer dishes.
 
 ## Framing a Prediction Problem
+I will be doing a multiclass classification with the goal of predicting whether a recipe's cooking time is short (≤ 25 min), medium (26–50 min), or long (> 50 min).
 
+Thus, the response variable is `time_cat`, a three-level categorical version of minutes.
+I chose this response variable because raw `minutes` is extremely right-skewed and noisy. Dividing into three ranges produces a stabler signal and an answer that readers actually act on.
+
+The evaluation metric I will be using is the F1-score. I chose the F1-score over accuracy because it gives information on the kinds of errors the classifier makes since it combines precision and recall. 
+
+All the features in our model — `n_steps`, `n_ingredients`, `calories`, `uses_oven` or `desc_length` — come directly from the recipe’s content as soon as it’s published, so they would be available at the time of prediction. In contrast, something like `avg_rating` doesn’t exist until users start cooking and rating, so it’s excluded. By restricting ourselves to only those recipe‐text fields, we ensure the model never “peeks” at future information and truly predicts prep‐time based solely on what’s known up front.
 
 ## Baseline Model
+My baseline model is a RandomForest Classifier using the feature `n_steps` (the number of steps in the recipe) and `n_ingredients` (the number of ingredients needed). Both are quantitative variables so there was no need for any encodings or transformations. 
+
+I split the data into train/test groups with a 80/20 split and fitted RandomForestClassifier() with default settings. 
+
+The F1 score of this model was 0.52. Specifically, the F1 score for the groups are 0.45, 0.46, and 0.64 for the short, medium, and long groups respectively. Thus, it seems that our model is good at capturing recipes that take >50 mins while it is not as good for recipes that take less. 
 
 ## Final Model
 
