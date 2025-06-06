@@ -46,16 +46,15 @@ The `nutrition` column was originally stored as a stringified list, which I spli
 Finally, I computed the average rating of each recipe and created a separate column `avg_rating`. By averaging ratings, it helps us summarize a recipe's reception. 
 
 After these steps of data cleaning, `df` has 234429 rows and 25 columns.
-The first few look like this:
+The first few rows look like this (I didn't include some of the columns since they are less significant and long):
 
-| name                                 |     id |   minutes |   contributor_id | submitted   |   n_steps |   n_ingredients |          user_id |   recipe_id | date       |   rating |   calories |   total_fat |   sugar |   sodium |   protein |   saturated_fat |   carbohydrates |   avg_rating |
-|:-------------------------------------|-------:|----------:|-----------------:|:------------|----------:|----------------:|-----------------:|------------:|:-----------|---------:|-----------:|------------:|--------:|---------:|----------:|----------------:|----------------:|-------------:|
-| 1 brownies in the world    best ever | 333281 |        40 |           985201 | 2008-10-27  |        10 |               9 | 386585           |      333281 | 2008-11-19 |        4 |      138.4 |          10 |      50 |        3 |         3 |              19 |               6 |            4 |
-| 1 in canada chocolate chip cookies   | 453467 |        45 |          1848091 | 2011-04-11  |        12 |              11 | 424680           |      453467 | 2012-01-26 |        5 |      595.1 |          46 |     211 |       22 |        13 |              51 |              26 |            5 |
-| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |  29782           |      306168 | 2008-12-31 |        5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |            5 |
-| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |      1.19628e+06 |      306168 | 2009-04-13 |        5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |            5 |
-| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 | 768828           |      306168 | 2013-08-02 |        5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |            5 |
-
+| name                                 |     id |   minutes |   contributor_id | submitted   |   n_steps |   n_ingredients |          user_id |   rating |   calories |   avg_rating |
+|:-------------------------------------|-------:|----------:|-----------------:|:------------|----------:|----------------:|-----------------:|---------:|-----------:|-------------:|
+| 1 brownies in the world    best ever | 333281 |        40 |           985201 | 2008-10-27  |        10 |               9 | 386585           |        4 |      138.4 |            4 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |          1848091 | 2011-04-11  |        12 |              11 | 424680           |        5 |      595.1 |            5 |
+| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |  29782           |        5 |      194.8 |            5 |
+| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |      1.19628e+06 |        5 |      194.8 |            5 |
+| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 | 768828           |        5 |      194.8 |            5 |
 ### Univariate Analysis
 
 
