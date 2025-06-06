@@ -1,5 +1,6 @@
 # RecipeAnalysis
 Data Project for UCSD DSC-80 Course Final Project
+
 Author: Ryan Zhang
 
 ## Introduction
@@ -90,10 +91,31 @@ There is a clear pattern where the more steps and ingredients a recipe has, the 
 
 ## Assessment of Missingness
 ### NMAR Analysis
-
-
+The `description` column is plausibly Not Missing At Random (NMAR) because the very decision to leave it blank often depends on qualities of the unwritten text itself. For example, authors may skip a blurb when the title already conveys the full idea, when the back-story is too personal or culturally sensitive, or when they feel their writing would be sub-par; all of these motives depend on information that is not recorded elsewhere in the dataset. To re-frame the mechanism as MAR, we would need variables that capture those hidden motives. For example, an “author-reason” column collected at submission time (self-explanatory title, privacy concerns, language barrier). Conditioning on such observed factors would let us explain the missingness without referencing the unseen description content, satisfying the MAR assumption.
 
 ### Missingness Dependency
+On the other hand, the column `rating` has non-trivial missingness to analyze. Thus, I will be performing permutation tests to determine whether there is dependency of the missingness on other columns. Specifically, I will test the numerical columns `n_steps`, `n_ingredients`, and `minutes`. 
+
+<iframe
+  src="assets/n_stepsmissing.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/n_ingredientsmissing.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/minutesmissing.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
 
 ## Hypothesis Testing
 
