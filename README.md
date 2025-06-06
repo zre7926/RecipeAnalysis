@@ -132,6 +132,19 @@ In conclusion, my permutation tests indicate that `rating` missingness is Missin
 
 ## Hypothesis Testing
 
+Null Hypothesis: Recipes are rated the same way
+
+Alternate Hypothesis: Recipes that 
+
+The test statistic used is the difference in means and the significance level is 0.05.
+
+<iframe
+  src="assets/permtest.html"
+  width="1000"
+  height="430"
+  frameborder="0"
+></iframe>
+
 ## Framing a Prediction Problem
 
 ## Baseline Model
