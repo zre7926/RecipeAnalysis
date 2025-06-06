@@ -132,9 +132,11 @@ In conclusion, my permutation tests indicate that `rating` missingness is Missin
 
 ## Hypothesis Testing
 
-Null Hypothesis: Recipes are rated the same way
+I wondered whether patience pays off in recipe ratings: do dishes that take longer earn different average scores than quick fixes? To answer this, we compared the mean user rating of “long” recipes to that of “short” recipes. A label-shuffling permutation test, using the difference in means as the statistic, lets us make this comparison without relying on normality assumptions.
 
-Alternate Hypothesis: Recipes that 
+Null Hypothesis: The mean rating for “long” recipes (cooking time > median) equals the mean rating for “short” recipes (cooking time <= median).
+
+Alternative hypothesis: The two means differ.
 
 The test statistic used is the difference in means and the significance level is 0.05.
 
@@ -144,8 +146,10 @@ The test statistic used is the difference in means and the significance level is
   height="430"
   frameborder="0"
 ></iframe>
+p-value = 0.000 < 0.05. Thus, we reject the null hypothesis. Thus, there is strong evidence that average ratings for longer recipes differ from those for shorter ones, with the observed difference suggesting slightly lower ratings for longer dishes.
 
 ## Framing a Prediction Problem
+
 
 ## Baseline Model
 
