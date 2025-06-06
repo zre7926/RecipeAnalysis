@@ -57,25 +57,42 @@ The first few rows look like this (I didn't include some of the columns since th
 | 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 | 768828           |        5 |      194.8 |            5 |
 
 ### Univariate Analysis
-For univariate analysis, I examined the distribution of cooking time within the dataset. It seems that the distribution is skewed to the right with the center being around 30-40 minutes. 
+For univariate analysis, I examined the distribution of cooking time within the dataset. It seems that the distribution is skewed to the right with the center being around 30-40 minutes. I noticed that there are a few outliers. In fact, one recipe takes 1 million minutes to cook and it's title is 'how to preserve a husband'.
 <iframe
   src="assets/univariateplot.html"
   width="800"
-  height="450"
+  height="430"
   frameborder="0"
 ></iframe>
-I noticed that there are a few outliers. In fact, one recipe takes 1 million minutes to cook and it's title is 'how to preserve a husband'.
 
 ### Bivariate Analysis
 For bivariate analysis, I examined the relationship between cooking time and average rating by plotting a scatter plot of the two columns. It seems that most data points are around the top left of the plot, which means high rating and less time. 
 <iframe
   src="assets/bivariateplot.html"
   width="1000"
-  height="450"
+  height="430"
   frameborder="0"
 ></iframe>
 
 ### Interesting Aggregates
+I created a pivot table by first grouping 
+
+| steps_band   |   ≤ 5 |   6–10 |   11–15 |   16–20 |   > 20 |
+|:-------------|------:|-------:|--------:|--------:|-------:|
+| ≤ 5          |    10 |     20 |      33 |      50 |     90 |
+| 6–10         |    25 |     35 |      40 |      50 |     60 |
+| 11–15        |    35 |     40 |      45 |      55 |     70 |
+| 16–20        |    40 |     50 |      55 |      60 |     75 |
+| > 20         |    55 |     60 |      65 |      80 |     95 |
+
+| steps_band | ingredients_band | ≤ 5 | 6–10 | 11–15 | 16–20 | > 20 |
+|------------|------------------|-----|------|--------|--------|------|
+|            |                  |     |      |        |        |      |
+| ≤ 5        |                  | 10  | 20   | 33     | 50     | 90   |
+| 6–10       |                  | 25  | 35   | 40     | 50     | 60   |
+| 11–15      |                  | 35  | 40   | 45     | 55     | 70   |
+| 16–20      |                  | 40  | 50   | 55     | 60     | 75   |
+| > 20       |                  | 55  | 60   | 65     | 80     | 95   |
 
 
 
