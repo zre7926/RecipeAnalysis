@@ -79,7 +79,7 @@ I created a pivot table to see the relationship between the number of steps, the
 
 There is a clear pattern where the more steps and ingredients a recipe has, the longer it takes. This is because as we move down and right along the table, the values become larger. 
 
-|ingredients_band≤5|6–10|11–15|16–20|>20|
+|ingredients_band|≤5|6–10|11–15|16–20|>20|
 |steps_band||||||
 |:-------------|----:|----:|----:|----:|----:|
 |≤5|10|20|33|50|90|
@@ -88,13 +88,10 @@ There is a clear pattern where the more steps and ingredients a recipe has, the 
 |16–20|40|50|55|60|75|
 |>20|55|60|65|80|95|
 
-
-
-
-
 ## Assessment of Missingness
-
 ### NMAR Analysis
+
+
 
 ### Missingness Dependency
 
@@ -107,5 +104,3 @@ There is a clear pattern where the more steps and ingredients a recipe has, the 
 ## Final Model
 
 ## Fairness Analysis
-
-hihi
